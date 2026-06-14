@@ -25,7 +25,7 @@ export default function ProjectCard({
   return (
     <Link href={`/projects/${slug}`}>
       <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl md:hover:scale-[1.02] transition-all duration-300 cursor-pointer h-full flex flex-col">
-        {image?.asset && (
+        {image && (
           <div className="relative w-full h-48 bg-gray-200 dark:bg-gray-700">
             <Image
               src={urlFor(image).url()}
