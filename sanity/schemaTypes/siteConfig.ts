@@ -37,6 +37,7 @@ export default defineType({
       type: 'array',
       of: [
         defineField({
+          name: 'socialLink',
           type: 'object',
           fields: [
             {name: 'platform', type: 'string', title: 'Platform'},
