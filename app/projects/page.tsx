@@ -6,6 +6,7 @@ import { PROJECTS_QUERY, TECHNOLOGIES_QUERY } from '@/sanity/lib/queries'
 import ProjectCard from '@/components/ProjectCard'
 import { GridSkeletonLoader } from '@/components/SkeletonLoaders'
 import type { Project } from '@/sanity/lib/types'
+import { log } from 'console'
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
@@ -13,7 +14,7 @@ export default function ProjectsPage() {
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
+  console.log(projects)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -109,6 +110,7 @@ export default function ProjectsPage() {
                 shortIntro={project.shortIntro}
                 description={project.description}
                 technologies={project.technologies}
+                image={project.images?.[0].asset}
               />
             ))}
           </div>

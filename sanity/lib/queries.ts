@@ -143,4 +143,7 @@ export const BLOG_POSTS_BY_CATEGORY_QUERY = groq`*[_type == "blog" && category =
 export const BLOG_CATEGORIES_QUERY = groq`*[_type == "blog"].category | unique()`
 
 // Technologies
-export const TECHNOLOGIES_QUERY = groq`*[_type == "project"].technologies[] | unique() | sort()`
+// export const TECHNOLOGIES_QUERY = groq`*[_type == "project"].technologies[] | unique() | sort()`
+export const TECHNOLOGIES_QUERY = `
+  array::unique(*[_type == "project"].technologies[]) | order(@ asc)
+`
