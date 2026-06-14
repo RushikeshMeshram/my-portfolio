@@ -1,4 +1,5 @@
 import { type SanityDocument } from 'next-sanity'
+import type { PortableTextBlock } from '@portabletext/types'
 
 export interface SiteConfig extends SanityDocument {
   name: string
@@ -83,11 +84,7 @@ export interface BlogPost extends SanityDocument {
   title: string
   slug: { current: string }
   excerpt?: string
-  content: {
-    name: 'content',
-    type: 'array',
-    of: [{ type: 'block' }]
-  }
+  content: PortableTextBlock[]
   featuredImage?: {
     asset?: {
       _id: string
