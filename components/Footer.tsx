@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { client } from '@/sanity/lib/client'
 import { SITE_CONFIG_QUERY } from '@/sanity/lib/queries'
 import type { SiteConfig } from '@/sanity/lib/types'
+import Link from 'next/link'
 
 export default function Footer() {
   const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null)
@@ -30,10 +31,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="/projects" className="hover:text-white transition">Projects</a></li>
-              <li><a href="/blog" className="hover:text-white transition">Blog</a></li>
-              <li><a href="/about" className="hover:text-white transition">About</a></li>
-              <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
+              <li><Link href="/projects" className="hover:text-white transition">Projects</Link></li>
+              <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
+              <li><Link href="/about" className="hover:text-white transition">About</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
             </ul>
           </div>
 
@@ -42,7 +43,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Connect</h3>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {siteConfig?.socialLinks?.map((link) => (
-                <a
+                <Link
                   key={link.platform}
                   href={link.url}
                   target="_blank"
@@ -50,7 +51,7 @@ export default function Footer() {
                   className="text-gray-400 hover:text-white transition capitalize"
                 >
                   {link.platform}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

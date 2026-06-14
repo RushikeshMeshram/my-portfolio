@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
+import { SanityImageSource } from '@sanity/image-url'
 
 interface ProjectCardProps {
   slug: string
@@ -10,7 +11,7 @@ interface ProjectCardProps {
   shortIntro?: string
   description?: string
   technologies?: string[]
-  image?: any
+  image?: SanityImageSource 
 }
 
 export default function ProjectCard({

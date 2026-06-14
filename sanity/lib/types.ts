@@ -83,7 +83,11 @@ export interface BlogPost extends SanityDocument {
   title: string
   slug: { current: string }
   excerpt?: string
-  content: any[]
+  content: {
+    name: 'content',
+    type: 'array',
+    of: [{ type: 'block' }]
+  }
   featuredImage?: {
     asset?: {
       _id: string

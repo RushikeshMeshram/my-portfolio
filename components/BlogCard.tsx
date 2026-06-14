@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
+import { SanityImageSource } from '@sanity/image-url'
 
 interface BlogCardProps {
   slug: string
@@ -10,7 +11,7 @@ interface BlogCardProps {
   excerpt?: string
   category?: string
   publishedDate: string
-  featuredImage?: any
+  featuredImage?: SanityImageSource
 }
 
 export default function BlogCard({
@@ -24,7 +25,7 @@ export default function BlogCard({
   return (
     <Link href={`/blog/${slug}`}>
       <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl md:hover:scale-[1.02] transition-all duration-300 cursor-pointer h-full flex flex-col">
-        {featuredImage?.asset && (
+        {featuredImage && (
           <div className="relative w-full h-48 bg-gray-200 dark:bg-gray-700">
             <Image
               src={urlFor(featuredImage).url()}

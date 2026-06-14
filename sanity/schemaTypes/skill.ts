@@ -29,9 +29,16 @@ export default defineType({
       name: 'proficiency',
       title: 'Proficiency Level',
       type: 'number',
-      options: {min: 1, max: 5},
-      description: '1 = Beginner, 5 = Expert',
+      options: {
+        list: [
+          {title: '1 - Beginner', value: 1},
+          {title: '2', value: 2},
+          {title: '3', value: 3},
+          {title: '4', value: 4},
+          {title: '5 - Expert', value: 5},
+        ],
+      },
       validation: (Rule) => Rule.required().min(1).max(5),
-    }),
+    })
   ],
 })
