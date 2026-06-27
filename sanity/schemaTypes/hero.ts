@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import blockContent from './blockContent'
 
 export default defineType({
   name: 'hero',
@@ -8,7 +9,7 @@ export default defineType({
     defineField({
       name: 'headline',
       title: 'Headline',
-      type: 'string',
+      type: 'blockContent',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -37,3 +38,5 @@ export default defineType({
     }),
   ],
 })
+
+

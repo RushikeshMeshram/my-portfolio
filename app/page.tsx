@@ -24,6 +24,7 @@ export default async function Home() {
     subheadline: hero?.subheadline || 'Building beautiful and functional web experiences',
     ctaText: hero?.ctaText || 'View My Work',
     ctaLink: hero?.ctaLink || '/projects',
+    backgroundImage: hero?.backgroundImage || undefined,
   }
 
   return (

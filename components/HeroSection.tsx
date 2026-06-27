@@ -1,17 +1,20 @@
 'use client'
 
 import Link from 'next/link'
+import { urlFor } from '@/sanity/lib/image'
+import { type SanityImageSource } from '@sanity/image-url'
 
 interface HeroProps {
   headline: string
   subheadline: string
   ctaText?: string
   ctaLink?: string
+  backgroundImage?: SanityImageSource
 }
 
-export default function HeroSection({ headline, subheadline, ctaText, ctaLink }: HeroProps) {
+export default function HeroSection({ headline, subheadline, ctaText, ctaLink, backgroundImage }: HeroProps) {
   return (
-    <section className="min-h-[calc(100dvh-4rem)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 sm:py-16">
+    <section className="min-h-[calc(100dvh-4rem)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 sm:py-16" style={{ backgroundImage: `url(${urlFor(backgroundImage).url()})` }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">
           {headline}
