@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 // Site Configuration
 export const SITE_CONFIG_QUERY = groq`*[_type == "siteConfig"][0]{
@@ -9,7 +9,7 @@ export const SITE_CONFIG_QUERY = groq`*[_type == "siteConfig"][0]{
   avatar,
   socialLinks,
   email,
-}`
+}`;
 
 // Hero Section
 export const HERO_QUERY = groq`*[_type == "hero"][0]{
@@ -19,7 +19,7 @@ export const HERO_QUERY = groq`*[_type == "hero"][0]{
   ctaText,
   ctaLink,
   backgroundImage,
-}`
+}`;
 
 // About Section
 export const ABOUT_QUERY = groq`*[_type == "about"][0]{
@@ -27,7 +27,7 @@ export const ABOUT_QUERY = groq`*[_type == "about"][0]{
   description,
   profileImage,
   highlights,
-}`
+}`;
 
 // Skills
 export const SKILLS_QUERY = groq`*[_type == "skill"] | order(category asc, name asc){
@@ -35,14 +35,14 @@ export const SKILLS_QUERY = groq`*[_type == "skill"] | order(category asc, name 
   name,
   category,
   proficiency,
-}`
+}`;
 
 export const SKILLS_BY_CATEGORY_QUERY = groq`*[_type == "skill" && category == $category] | order(name asc){
   _id,
   name,
   category,
   proficiency,
-}`
+}`;
 
 // Projects
 export const PROJECTS_QUERY = groq`*[_type == "project"] | order(createdDate desc){
@@ -57,7 +57,7 @@ export const PROJECTS_QUERY = groq`*[_type == "project"] | order(createdDate des
   githubLink,
   featured,
   createdDate,
-}`
+}`;
 
 export const FEATURED_PROJECTS_QUERY = groq`*[_type == "project" && featured == true] | order(createdDate desc)[0...3]{
   _id,
@@ -71,7 +71,7 @@ export const FEATURED_PROJECTS_QUERY = groq`*[_type == "project" && featured == 
   githubLink,
   featured,
   createdDate,
-}`
+}`;
 
 export const PROJECT_BY_SLUG_QUERY = groq`*[_type == "project" && slug.current == $slug][0]{
   _id,
@@ -85,11 +85,11 @@ export const PROJECT_BY_SLUG_QUERY = groq`*[_type == "project" && slug.current =
   githubLink,
   featured,
   createdDate,
-}`
+}`;
 
 export const PROJECT_SLUGS_QUERY = groq`*[_type == "project"]{
   slug,
-}`
+}`;
 
 // Experiences
 export const EXPERIENCES_QUERY = groq`*[_type == "experience"] | order(startDate desc){
@@ -100,7 +100,7 @@ export const EXPERIENCES_QUERY = groq`*[_type == "experience"] | order(startDate
   endDate,
   description,
   companyLogo,
-}`
+}`;
 
 // Blog
 export const BLOG_POSTS_QUERY = groq`*[_type == "blog"] | order(publishedDate desc){
@@ -112,7 +112,7 @@ export const BLOG_POSTS_QUERY = groq`*[_type == "blog"] | order(publishedDate de
   featuredImage,
   category,
   publishedDate,
-}`
+}`;
 
 export const BLOG_POST_BY_SLUG_QUERY = groq`*[_type == "blog" && slug.current == $slug][0]{
   _id,
@@ -123,11 +123,11 @@ export const BLOG_POST_BY_SLUG_QUERY = groq`*[_type == "blog" && slug.current ==
   featuredImage,
   category,
   publishedDate,
-}`
+}`;
 
 export const BLOG_SLUGS_QUERY = groq`*[_type == "blog"]{
   slug,
-}`
+}`;
 
 export const BLOG_POSTS_BY_CATEGORY_QUERY = groq`*[_type == "blog" && category == $category] | order(publishedDate desc){
   _id,
@@ -138,12 +138,14 @@ export const BLOG_POSTS_BY_CATEGORY_QUERY = groq`*[_type == "blog" && category =
   featuredImage,
   category,
   publishedDate,
-}`
+}`;
 
-export const BLOG_CATEGORIES_QUERY = groq`*[_type == "blog"].category | unique()`
+export const BLOG_CATEGORIES_QUERY = groq`
+  array::unique(*[_type == "blog"].category)
+`;
 
 // Technologies
 // export const TECHNOLOGIES_QUERY = groq`*[_type == "project"].technologies[] | unique() | sort()`
 export const TECHNOLOGIES_QUERY = `
   array::unique(*[_type == "project"].technologies[]) | order(@ asc)
-`
+`;

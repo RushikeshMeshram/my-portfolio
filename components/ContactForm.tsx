@@ -21,7 +21,6 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Integrate email service (Resend, SendGrid, etc.)
     console.log('Form submitted:', formData)
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3000)

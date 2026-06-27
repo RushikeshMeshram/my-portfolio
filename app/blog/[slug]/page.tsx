@@ -9,23 +9,19 @@ import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import { SkeletonLoader } from '@/components/SkeletonLoaders'
 import type { BlogPost } from '@/sanity/lib/types'
+import { useParams } from 'next/navigation'
 
-interface BlogDetailProps {
-  params: {
-    slug: string
-  }
-}
-
-export default function BlogDetail({ params }: BlogDetailProps) {
+export default function BlogDetail() {
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const { slug } = useParams<{ slug: string }>()
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const postData = await client.fetch<BlogPost | null>(BLOG_POST_BY_SLUG_QUERY, {
-          slug: params.slug,
+          slug: slug,
         })
         setPost(postData)
         if (!postData) {
@@ -39,7 +35,7 @@ export default function BlogDetail({ params }: BlogDetailProps) {
       }
     }
     fetchPost()
-  }, [params.slug])
+  }, [slug])
 
   if (loading) {
     return (

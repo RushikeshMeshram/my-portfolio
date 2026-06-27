@@ -20,7 +20,7 @@ export interface SiteConfig extends SanityDocument {
 
 export interface Hero extends SanityDocument {
   headline: string
-  subheadline: string
+  subheadline: PortableTextBlock[]
   ctaText?: string
   ctaLink?: string
   backgroundImage?: {

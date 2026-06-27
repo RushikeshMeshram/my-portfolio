@@ -6,6 +6,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Project } from '@/sanity/lib/types'
 import type { Metadata } from 'next'
+import { PortableText } from "@portabletext/react";
+import { RenderComponents as components } from "@/lib/renderBlock";
 
 export const revalidate = 60 // ISR
 
@@ -77,32 +79,32 @@ export default async function ProjectDetail(props: { params: Params }) {
 
         {/* Description */}
         <div className="prose dark:prose-invert max-w-none mb-12">
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap break-words">
-            {project.description}
-          </p>
+          <div className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap break-words">
+            <PortableText value={project.description} components={components} />
+          </div>
         </div>
 
         {/* Links */}
         <div className="flex flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-12">
           {project.projectLink && (
-            <a
+            <Link
               href={project.projectLink}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 sm:px-6 rounded-lg transition text-sm sm:text-base text-center"
             >
               View Live Project
-            </a>
+            </Link>
           )}
           {project.githubLink && (
-            <a
+            <Link
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-5 sm:px-6 rounded-lg transition text-sm sm:text-base text-center"
             >
               View on GitHub
-            </a>
+            </Link>
           )}
         </div>
 

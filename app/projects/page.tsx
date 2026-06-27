@@ -6,7 +6,6 @@ import { PROJECTS_QUERY, TECHNOLOGIES_QUERY } from '@/sanity/lib/queries'
 import ProjectCard from '@/components/ProjectCard'
 import { GridSkeletonLoader } from '@/components/SkeletonLoaders'
 import type { Project } from '@/sanity/lib/types'
-import { log } from 'console'
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
@@ -14,7 +13,7 @@ export default function ProjectsPage() {
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  console.log(projects)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +46,7 @@ export default function ProjectsPage() {
               Projects are temporarily unavailable
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              We're having trouble loading the project portfolio right now.
+              We`re having trouble loading the project portfolio right now.
               Please refresh the page or check back in a few minutes.
             </p>
 

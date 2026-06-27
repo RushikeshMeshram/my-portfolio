@@ -27,7 +27,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Full Description',
-      type: 'text',
+      type: 'blockContent',
     }),
     defineField({
       name: 'images',

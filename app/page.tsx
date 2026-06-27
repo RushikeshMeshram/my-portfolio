@@ -5,6 +5,7 @@ import HeroSection from '@/components/HeroSection'
 import FeaturedProjects from '@/components/FeaturedProjects'
 import type { Metadata } from 'next'
 import type { Hero, Project } from '@/sanity/lib/types'
+import {defaultblockContent} from '@/lib/defaultblockContent'
 
 export const revalidate = 60 // ISR: revalidate every 60 seconds
 
@@ -18,10 +19,10 @@ export default async function Home() {
     client.fetch<Hero | null>(HERO_QUERY),
     client.fetch<Project[]>(FEATURED_PROJECTS_QUERY),
   ])
-
+  
   const heroData = {
     headline: hero?.headline || 'Frontend Developer',
-    subheadline: hero?.subheadline || 'Building beautiful and functional web experiences',
+    subheadline: hero?.subheadline || defaultblockContent,
     ctaText: hero?.ctaText || 'View My Work',
     ctaLink: hero?.ctaLink || '/projects',
     backgroundImage: hero?.backgroundImage || undefined,

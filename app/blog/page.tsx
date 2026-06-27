@@ -49,7 +49,7 @@ export default function BlogPage() {
             </h2>
 
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              We're having trouble loading the latest articles right now.
+              We`re having trouble loading the latest articles right now.
               Please refresh the page and try again. If the issue persists,
               check back later for new content.
             </p>
