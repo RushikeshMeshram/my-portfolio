@@ -8,19 +8,24 @@ interface SkillCardProps {
 
 export default function SkillCard({ name, proficiency, category }: SkillCardProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow min-w-0">
-      <div className="flex justify-between items-start gap-2 mb-2">
-        <h3 className="font-semibold text-gray-900 dark:text-white break-words min-w-0">{name}</h3>
-        <span className="text-sm text-gray-500 dark:text-gray-400 shrink-0">{proficiency}/5</span>
+    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 min-w-0">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="font-bold text-lg text-gray-900 dark:text-white truncate">{name}</h3>
+        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{proficiency}/5</span>
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{category}</p>
-      {/* Proficiency Bar */}
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+
+      {/* Category */}
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 italic">{category}</p>
+
+      {/* Progress Bar */}
+      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
         <div
-          className="bg-blue-600 h-2 rounded-full"
+          className="h-3 rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-all duration-500 ease-out"
           style={{ width: `${(proficiency / 5) * 100}%` }}
         ></div>
       </div>
     </div>
   )
 }
+

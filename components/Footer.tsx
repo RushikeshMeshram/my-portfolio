@@ -41,7 +41,7 @@ export default function Footer() {
           {/* Social Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
+            <div className="flex flex-col flex-wrap gap-x-4 gap-y-2">
               {siteConfig?.socialLinks?.map((link) => (
                 <Link
                   key={link.platform}

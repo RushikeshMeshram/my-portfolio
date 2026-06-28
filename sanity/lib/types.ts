@@ -1,5 +1,6 @@
 import { type SanityDocument } from 'next-sanity'
 import type { PortableTextBlock } from '@portabletext/types'
+import { type SanityImageSource } from "@sanity/image-url";
 
 export interface SiteConfig extends SanityDocument {
   name: string
@@ -33,12 +34,13 @@ export interface Hero extends SanityDocument {
 
 export interface About extends SanityDocument {
   description: string
-  profileImage?: {
-    asset?: {
-      _id: string
-      url: string
-    }
-  }
+  // profileImage?: {
+  //   asset?: {
+  //     _id: string
+  //     url: string
+  //   }
+  // }
+  profileImage:SanityImageSource
   highlights?: string[]
 }
 

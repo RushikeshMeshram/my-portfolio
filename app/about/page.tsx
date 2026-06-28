@@ -1,37 +1,67 @@
-import { client } from '@/sanity/lib/client'
-import { ABOUT_QUERY, SKILLS_QUERY, EXPERIENCES_QUERY } from '@/sanity/lib/queries'
-import { generateSEOMetadata } from '@/lib/seo'
-import SkillCard from '@/components/SkillCard'
-import ExperienceCard from '@/components/ExperienceCard'
-import type { Metadata } from 'next'
-import type { About, Skill, Experience } from '@/sanity/lib/types'
+import { client } from "@/sanity/lib/client";
+import {
+  ABOUT_QUERY,
+  SKILLS_QUERY,
+  EXPERIENCES_QUERY,
+} from "@/sanity/lib/queries";
+import { generateSEOMetadata } from "@/lib/seo";
+import SkillCard from "@/components/SkillCard";
+import ExperienceCard from "@/components/ExperienceCard";
+import type { Metadata } from "next";
+import type { About, Skill, Experience } from "@/sanity/lib/types";
+import { PortableText } from "@portabletext/react";
+import { RenderComponents as components } from "@/lib/renderBlock";
+import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
-export const revalidate = 60 // ISR: revalidate every 60 seconds
+export const revalidate = 60; // ISR: revalidate every 60 seconds
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'About Me | Frontend Developer',
-  description: 'Learn more about my experience, skills, and professional journey in frontend development.',
-})
+  title: "About Me | Frontend Developer",
+  description:
+    "Learn more about my experience, skills, and professional journey in frontend development.",
+});
 
 export default async function AboutPage() {
   const [aboutData, skills, experiences] = await Promise.all([
     client.fetch<About | null>(ABOUT_QUERY),
     client.fetch<Skill[]>(SKILLS_QUERY),
     client.fetch<Experience[]>(EXPERIENCES_QUERY),
-  ])
+  ]);
 
   return (
     <div className="bg-white dark:bg-gray-900 py-12 sm:py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* About Section */}
         <section className="mb-16 sm:mb-20">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">About Me</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
+            About Me
+          </h1>
           {aboutData?.description ? (
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl break-words">
-              {aboutData.description}
-            </p>
+            <div className="w-full max-w-5xl flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+              {/* Image */}
+              <div className="order-1 md:order-2 flex justify-center md:justify-end w-full md:w-auto">
+                <Image
+                  src={urlFor(aboutData.profileImage).url()}
+                  alt="Rushikesh Meshram"
+                  width={250}
+                  height={250}
+                  className="rounded-full object-cover w-40 h-40 md:w-62 md:h-62"
+                />
+              </div>
+
+              {/* Text */}
+              <div className="order-2 md:order-1 flex-1 text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed break-words">
+                <PortableText
+                  value={aboutData.description}
+                  components={components}
+                />
+              </div>
+            </div>
           ) : (
-            <p className="text-gray-500">About information not yet added. Check back soon!</p>
+            <p className="text-gray-500">
+              About information not yet added. Check back soon!
+            </p>
           )}
 
           {aboutData?.highlights && aboutData.highlights.length > 0 && (
@@ -49,7 +79,9 @@ export default async function AboutPage() {
         {/* Skills Section */}
         {skills.length > 0 && (
           <section className="mb-20">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">Skills</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
+              Skills
+            </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {skills.map((skill) => (
                 <SkillCard
@@ -85,5 +117,5 @@ export default async function AboutPage() {
         )}
       </div>
     </div>
-  )
+  );
 }
